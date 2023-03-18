@@ -1,0 +1,100 @@
+1.
+u1 = User.objects.create_user('Jonny Walker')
+>>> u2 = User.objects.create_user('Jack Daniels')
+
+2.
+>>> Author.objects.create(author_user=u1)
+>>> Author.objects.create(author_user=u2)
+
+3.
+>>> Category.objects.create(category_name = 'IT')
+>>> Category.objects.create(category_name = 'Science')
+>>> Category.objects.create(category_name = 'Politics')
+>>> Category.objects.create(category_name = 'Rest')
+
+4.
+>>> author1 = Author.objects.get(id=1)
+>>> title1 = 'NYT: авиакомпании США потребовали запретить иностранным конкурентам полеты над Россией'
+>>> text1 = '''Американские авиакомпании, потерявшие возможность летать над Россией, призвали конгресс и Белый дом запретить иностранным конкурентам полеты через российское воздушное пространство, пишет газета New York Times.РИА Новости
+	 По мнению американских представителей отрасли, доступ к более коротким и экономичным маршрутам дает Air India, Emirates и China Eastern Airlines "несправедливое преимущество".РИА Новости
+	 Airlines for America оценила потери американских авиакомпаний в $2 млрд в год.Коммерсантъ
+	 По словам пресс-секретаря Airlines for America Марли Кольер, администрация Джо Байдена должна принять меры, чтобы иностранные перевозчики, летающие над Россией, "не вылетали, не приземлялись и не проходили транзитом через аэропорты США".
+'''
+>>> Post.objects.create(post_author=author1, post_type='NE',post_title = title1, post_text = text1)
+
+>>> title2 = 'Отпечатки ладоней возрастом 13 000 лет'
+>>> text2 = '''Можно ли прикоснуться к древности? Не к произведениям античных скульпторов и строителей, а к эпохам, оставшимся давно в прошлом?
+Живя в современном мире, мы редко задумываемся, насколько давно населяет Землю человек. Все началось еще миллионы лет назад, когда первые гоминиды встали на задние конечности и научились создавать примитивные орудия труда. Современная эпоха с письменностью, городами и государствами — всего лишь миг по сравнению с теми временами, когда по континентам мигрировали немногочисленные племена наших предков.
+И жили они не в домах или лачугах — их попросту незачем было строить: первобытным племенам, занимавшимся собирательством, приходилось постоянно мигрировать в зависимости от сезонных изменений. Однако редким счастливчикам удавалось находить такие места, где и пищи было в избытке круглый год, и укрытие было под боком. Речь, конечно же, идет о пещерах — естественных природных укрытиях, уходящих на десятки метров вглубь скальных пород. Вот они — самые древние прообразы людских поселений. Порой такие пещеры могли служить домом для племен в течение тысяч лет. За это время в них накапливались многочисленные следы, оставленные древними людьми, и некоторые их них сумели сохраниться до наших дней.
+Одна их таких пещер находится на юге Аргентины неподалеку от реки Пунтарас. Археологи считают, что древние люди — потомки южноамериканских индейцев — населяли ее на протяжении десятков тысяч лет. Во всем мире эта пещера известна как «Пещера рук».
+Почему она получила такое название становится понятно сразу при входе — стены пещеры усеяны отпечатками живших в ней людей. Наши предки использовали природные красители, которые распыляли поверх прислоненной ладони с помощью костяных трубочек. Кстати, именно по их останкам, обнаруженным у одной из стен, ученые смогли обнаружить возраст наскальной живописи — от 13 000 до 9 000 лет.
+Если взрослый мужчина приложит свою ладонь к отпечаткам своих далеких предков, то удивится, что их ладони были намного меньше. Столь большая разница в физическом развитии между древним человеком и нынешним? На самом деле нет — древние люди были физически развитее нас, просто большинство из этих отпечатков принадлежат подросткам. Скорее всего, оставлять рисунок своей ладони на стене пещеры было своего рода обрядом среди членов племени, когда юноши и девушки вступали в определенный возраст.
+Присмотритесь к этим отпечаткам. Из древнего камня к нам тянутся руки давно умерших людей. Но от этого не становится страшно — следы заставляют нас задуматься о вечности, о том, насколько мимолетно проходит жизнь одного человека в беспощадном течении времени.
+'''
+>>> Post.objects.create(post_author=author1, post_type='AR',post_title = title2, post_text = text2)
+
+>>> author2 = Author.objects.get(id=2)
+>>> title3 = 'Как проводят отпуск ИТ-специалисты — инфографика соцопроса'
+>>> text3 = '''На календаре – июль. Лето прочно вступило в свои права, наступил самый разгар отпусков. Мы решили узнать, как проводят время ИТ-специалисты на отдыхе, и провели опрос среди пользователей «Хабра» и «Моего круга».
+В общей сложности на вопросы ответили 3342 респондента.
+Выяснилось, что многие не перестают программировать и совершенствовать свои навыки даже во время отпуска. В большинстве своем, околокомпьютерные профессионалы любят путешествовать по России, преимущественно с семьей или парой. Многие готовы потратить последние деньги на отпуск и отправиться в путешествие в любой момент, не утруждая себя подготовкой и накоплением нужных средств.
+За подробностями и ответами на другие животрепещущие вопросы – добро пожаловать под кат.
+'''
+>>> Post.objects.create(post_author=author2, post_type='AR',post_title = title3, post_text = text3)
+
+5.
+>>> Post.objects.get(id=1).post_category.add(Category.objects.get(id=3))
+>>> Post.objects.get(id=2).post_category.add(Category.objects.get(id=2))
+>>> Post.objects.get(id=3).post_category.add(Category.objects.get(id=1))
+>>> Post.objects.get(id=3).post_category.add(Category.objects.get(id=4))
+
+6.
+>>> comtext1 = 'I disagree with the author. I think the news is bad.'
+>>> Comment.objects.create(comment_post=Post.objects.get(id=1), comment_user=Author.objects.get(id=2).author_user, comment_text=comtext1)
+>>> comtext2 = 'Try it then write the news yourself better.'
+>>> Comment.objects.create(comment_post=Post.objects.get(id=1), comment_user=Author.objects.get(id=1).author_user, comment_text=comtext2)
+>>> comtext3 = 'Not a bad article.'
+>>> Comment.objects.create(comment_post=Post.objects.get(id=2), comment_user=Author.objects.get(id=1).author_user, comment_text=comtext3)
+>>> comtext4 = 'But this is relevant.'
+>>> Comment.objects.create(comment_post=Post.objects.get(id=3), comment_user=Author.objects.get(id=1).author_user, comment_text=comtext4)
+
+7.
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=2).like()
+>>> Comment.objects.get(id=3).like()
+>>> Comment.objects.get(id=4).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=2).like()
+>>> Post.objects.get(id=2).like()
+>>> Post.objects.get(id=2).like()
+>>> Post.objects.get(id=3).like()
+
+
+8.
+>>> Author.objects.get(id=1).update_rating()
+>>> Author.objects.get(id=2).update_rating()
+
+9.
+for i in Author.objects.order_by('-author_rating')[:1]:
+	i.author_user.username
+	i.author_rating
+
+10.
+for i in Post.objects.order_by('-post_rating')[:1]:
+	i.post_time_in.strftime('%d.%m.%Y %H:%M')
+	i.post_author.author_user.username
+	i.post_rating
+	i.post_title
+	i.preview()
+
+11.
+for i in Comment.objects.filter(comment_post=Post.objects.order_by('-post_rating')[:1][0]):
+	i.comment_time_in.strftime('%d.%m.%Y %H:%M')
+	i.comment_user.username
+	i.comment_rating
+	i.comment_text
