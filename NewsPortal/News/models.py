@@ -1,11 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
+from datetime import datetime
 
 
 class Author(models.Model):
     author_rating = models.FloatField(default=0)
     author_user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.author_user.username}'
 
     def update_rating(self):
         summ_rating = 0
@@ -18,6 +22,8 @@ class Author(models.Model):
 
 class Category(models.Model):
     category_name = models.CharField(max_length=255, unique=True)
+    def __str__(self):
+        return f'{self.category_name}'
 
 
 class Post(models.Model):
@@ -35,6 +41,9 @@ class Post(models.Model):
     post_title = models.CharField(max_length=255)
     post_text = models.TextField()
     post_rating = models.FloatField(default=0)
+
+    def __str__(self):
+        return f'{self.post_title}: {self.preview()}'
 
     def like(self):
         self.post_rating += 1
@@ -67,3 +76,6 @@ class Comment(models.Model):
     def dislike(self):
         self.comment_rating -= 1
         self.save()
+
+    def __str__(self):
+        return f'{self.comment_post.post_text[0:20]}: {self.comment_text}.{self.comment_user.username}'

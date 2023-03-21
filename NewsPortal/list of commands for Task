@@ -93,8 +93,4 @@ for i in Post.objects.order_by('-post_rating')[:1]:
 	i.preview()
 
 11.
-for i in Comment.objects.filter(comment_post=Post.objects.order_by('-post_rating')[:1][0]):
-	i.comment_time_in.strftime('%d.%m.%Y %H:%M')
-	i.comment_user.username
-	i.comment_rating
-	i.comment_text
+Post.objects.order_by('-post_rating')[0].comment_set.all().values('comment_time_in', 'comment_user__username', 'comment_rating', 'comment_text')
