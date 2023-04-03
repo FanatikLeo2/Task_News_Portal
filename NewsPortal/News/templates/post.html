@@ -1,0 +1,21 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+{{ post.post_title|censor }}
+{% endblock title %}
+
+{% block content %}
+<h3>{{ post.post_title|censor }}</h3>
+<hr>
+<p>{{ post.post_time_in|date:'d.M.Y'}}</p>
+<hr>
+{{ post.post_text|censor }}
+<br>
+<br>
+<h6>Автор - {{ post.post_author}}</h6>
+<a class="my link" href="/news/comments/create"><h6>Оставить коментарий</h6></a>
+<a class="my link" href="/news/{{ post.id }}/update"><h6>Изменить</h6></a>
+<a class="my link" href="/news/{{ post.id }}/delete"><h6>Удалить</h6></a>
+{% endblock content %}

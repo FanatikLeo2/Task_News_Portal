@@ -1,0 +1,57 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+Все комментарии
+{% endblock title %}
+
+{% block content %}
+<h6>{{ time_now }}</h6>
+   <hr>
+<h2>Все комментарии ( {{ page_obj.paginator.count }} )</h2>
+   <hr>
+   {% if comment %}
+        {% for comment in comment %}
+            <style>
+            .mylink{color:black; text-decoration: none}
+            .mylink:hover{color:black; text-decoration: underline}
+            .mylink:visited{color:grey; text-decoration: none}
+            </style>
+            <p>{{ comment.comment_time_in|date:'d.M.Y'}}</p>
+            <a class="mylink" href="{{ comment.get_absolute_url }}">
+                <p>Коментарий : "{{ comment.comment_text|censor }}" - {{ comment.comment_user.username }}</p>
+            </a>
+            {% if comment.comment_post.post_title|length > 60 %}
+                <a class="mylink" href="/news/{{ comment.comment_post.id }}">
+                    <h6>{{ comment.comment_post.post_title|truncatechars:60|censor }}...</h6>
+                </a>
+            {% else %}
+                <a class="mylink" href="/news/{{ comment.comment_post.id }}">
+                    <h6>{{ comment.comment_post.post_title|censor }}</h6>
+                </a>
+            {% endif %}
+            {{ comment.comment_post.post_text|truncatechars:60|censor }}
+            <hr>
+        {% endfor %}
+    {% else %}
+       <h2>Коментариев нет!</h2>
+    {% endif %}
+ {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+
+   {{ page_obj.number }}
+
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+{% endblock content %}

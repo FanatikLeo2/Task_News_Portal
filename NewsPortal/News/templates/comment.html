@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+{{ com.comment_text|truncatechars:20|censor }}
+{% endblock title %}
+
+{% block content %}
+<p>{{ com.comment_time_in|date:'d.M.Y'}}</p>
+<hr>
+<p>{{ com.comment_text }}</p>
+<hr>
+<h6>Автор - {{ com.comment_user }}</h6>
+{% endblock content %}

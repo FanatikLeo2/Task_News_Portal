@@ -1,0 +1,18 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_tags %}
+
+{% block title %}
+Создание коментария
+{% endblock title %}
+
+{% block content %}
+<h6>{% current_time %}</h6>
+   <hr>
+<h2>Создание коментария</h2>
+   <hr>
+ <form action ="" method="post">
+     {% csrf_token %}
+     {{ form.as_p }}
+ <input type="submit" class="mt-3 btn-primary" value="Сохранить"></form>
+{% endblock content %}
