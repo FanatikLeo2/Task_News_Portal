@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from datetime import datetime
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseRedirect
 from .models import *
 from .filters import PostFilter
@@ -18,6 +19,7 @@ class PostList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['time_now'] = datetime.now()
+        context['is_author'] = self.request.user.groups.filter(name='authors').exists()
         return context
 
 
@@ -45,19 +47,25 @@ class PostDetail(DetailView):
     context_object_name = 'post'
 
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin, CreateView):
+    form_class = PostCreateForm
+    model = Post
+    template_name = 'post_createform.html'
+
+    def form_valid(self, form):
+        form.instance.post_author = self.request.user.author
+        return super().form_valid(form)
+
+
+class PostUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('News.change_post',)
     form_class = PostCreateForm
     model = Post
     template_name = 'post_createform.html'
 
 
-class PostUpdate(UpdateView):
-    form_class = PostCreateForm
-    model = Post
-    template_name = 'post_createform.html'
-
-
-class ProductDelete(DeleteView):
+class PostDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('News.delete_post',)
     model = Post
     template_name = 'post_deleteform.html'
     success_url = reverse_lazy('post_list')
@@ -82,14 +90,24 @@ def show_comment(requests, comment_text):
     return render(requests, 'comment.html', context={'com': com})
 
 
-def create_comment(request):
-    form = CommentCreateForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/news/comments/')
+class CommentCreate(LoginRequiredMixin, CreateView):
+    form_class = CommentCreateForm
+    model = Comment
+    template_name = 'comment_createform.html'
 
-    return render(request, 'comment_createform.html', {'form': form})
+    def form_valid(self, form):
+        form.instance.comment_user = self.request.user
+        form.instance.comment_post = Post.objects.get(pk=int(self.kwargs['pk']))
+        return super().form_valid(form)
+
+# def create_comment(request):
+#     form = CommentCreateForm(request.POST)
+#     if request.method == 'POST':
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect('/news/comments/')
+#
+#     return render(request, 'comment_createform.html', {'form': form})
 
 
 def index(requests):
@@ -100,5 +118,7 @@ def index(requests):
 
     return render(requests, 'index.html',
                   context={'posts': posts, 'comments': comments, 'authors': authors, 'categories': categories})
+
+
 
 

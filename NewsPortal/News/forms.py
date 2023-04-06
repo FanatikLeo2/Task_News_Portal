@@ -9,7 +9,7 @@ class PostCreateForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['post_author', 'post_type', 'post_category', 'post_title', 'post_text']
+        fields = ['post_type', 'post_category', 'post_title', 'post_text']
 
     # def clean_name(self):
     #     post_text = self.cleaned_data["post_text"]
@@ -21,4 +21,4 @@ class PostCreateForm(forms.ModelForm):
 class CommentCreateForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ['comment_text']
