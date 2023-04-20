@@ -13,12 +13,12 @@
     <h2>Новости</h2>
     Всего: {{ page_obj.paginator.count }}
     <hr>
-    <a class="btn btn-secondary" href="{% url 'post_search' %}">Поиск</a>
+    <a class="btn btn-secondary btn-sm" href="{% url 'post_search' %}">Поиск</a>
     {% if not is_author %}
-        <a class="btn btn-secondary" href="{% url 'account_upgrade' %}">Стать автором!</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'account_upgrade' %}">Стать автором!</a>
     {% endif %}
     {% if perms.News.add_post %}
-        <a class="btn btn-secondary" href="{% url 'create_post' %}">Добавить новость</a>
+        <a class="btn btn-secondary btn-sm" href="{% url 'create_post' %}">Добавить новость</a>
     {% endif %}
     <hr>
     {% if post %}
@@ -41,18 +41,18 @@
        <h2>Новостей нет!</h2>
     {% endif %}
    {% if page_obj.has_previous %}
-       <a class="btn btn-secondary btn-sm" href="?{% url_replace page=1 %}">1</a>
+       <a class="mylink" href="?{% url_replace page=1 %}">1</a>
        {% if page_obj.previous_page_number != 1 %}
            ...
-           <a class="btn btn-secondary btn-sm" href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+           <a class="mylink" href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
        {% endif %}
    {% endif %}
-   <a class="btn btn-dark">{{ page_obj.number }}</a>
+   {{ page_obj.number }}
    {% if page_obj.has_next %}
-       <a class="btn btn-secondary btn-sm" href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+       <a class="mylink" href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
        {% if paginator.num_pages != page_obj.next_page_number %}
            ...
-           <a class="btn btn-secondary btn-sm" href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+           <a class="mylink" href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
        {% endif %}
    {% endif %}
 {% endblock content %}

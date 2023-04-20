@@ -6,6 +6,6 @@
     <form action="" method="post">
         {% csrf_token %}
         <p>Удаляем "{{ object.post_title|truncatechars:25 }}"?</p>
-        <input type="submit" class="btn btn-danger" value="Удалить" />
+        <input type="submit" class="btn btn-secondary btn-sm" value="Удалить" />
     </form>
 {% endblock content %}

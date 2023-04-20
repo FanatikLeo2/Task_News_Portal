@@ -16,10 +16,10 @@
     <br>
     <h6>Автор - {{ post.post_author }}</h6>
     {% if perms.News.change_post or post.post_author == request.user.author %}
-        <a class="btn btn-dark" href="/news/{{ post.id }}/update">Изменить</a>
+        <a class="btn btn-secondary btn-sm" href="/news/{{ post.id }}/update">Изменить</a>
     {% endif %}
     {% if perms.News.delete_post or post.post_author == request.user.author%}
-        <a class="btn btn-danger" href="/news/{{ post.id }}/delete">Удалить</a>
+        <a class="btn btn-secondary btn-sm" href="/news/{{ post.id }}/delete">Удалить</a>
     {% endif %}
     <hr>
     <h5>Комментарии ({{ post.comment_set.all|length }}) :</h5>

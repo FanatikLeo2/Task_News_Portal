@@ -148,10 +148,8 @@ def index(requests):
 
 class CategoryListView(ListView):
     model = Post
-    ordering = '-post_time_in'
     template_name = 'category_list.html'
     context_object_name = 'category_news_list'
-    paginate_by = 2
 
     def get_queryset(self):
         self.post_category = get_object_or_404(Category, id=self.kwargs['pk'])
