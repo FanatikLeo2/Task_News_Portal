@@ -39,16 +39,16 @@
         <h2>Коментариев нет!</h2>
     {% endif %}
     {% if page_obj.has_previous %}
-        <a class="mylink" href="?page=1">1</a>
+        <a class="btn btn-secondary btn-sm" href="?page=1">1</a>
         {% if page_obj.previous_page_number != 1 %}...
-            <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            <a class="btn btn-secondary btn-sm" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
         {% endif %}
    {% endif %}
-   {{ page_obj.number }}
+   <a class="btn btn-dark">{{ page_obj.number }}</a>
    {% if page_obj.has_next %}
-       <a class="mylink" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       <a class="btn btn-secondary btn-sm" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
        {% if paginator.num_pages != page_obj.next_page_number %}...
-           <a class="mylink" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+           <a class="btn btn-secondary btn-sm" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
        {% endif %}
    {% endif %}
 {% endblock content %}
