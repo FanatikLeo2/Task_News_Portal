@@ -14,5 +14,9 @@ urlpatterns = [
    path('<int:pk>/create_comment', CommentCreate.as_view(), name='comment_create'),
    path('comments/<str:comment_text>', show_comment, name='show_comment'),
    path('index/', index),
+   # path('subscriptions/', subscriptions, name='subscriptions'),
+   path('categories/<int:pk>', CategoryListView.as_view(), name='category_list'),
+   path('categories/<int:pk>/subscribe', subscribe, name='subscribe'),
+   path('categories/<int:pk>/unsubscribe', unsubscribe, name='unsubscribe'),
 
 ]

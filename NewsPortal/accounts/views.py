@@ -2,13 +2,13 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.views.generic.edit import CreateView
-from .forms import SignUpForm
+from .forms import SignUpForm, CustomSignupForm
 from News.models import Author
 
 
 class SignUp(CreateView):
     model = User
-    form_class = SignUpForm
+    form_class = CustomSignupForm
     success_url = '/accounts/login'
     template_name = 'registration/signup.html'
 

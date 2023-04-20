@@ -27,6 +27,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     category_name = models.CharField(max_length=255, unique=True)
+    subscribers = models.ManyToManyField(User, related_name='categories')
 
     def __str__(self):
         return f'{self.category_name}'
@@ -85,7 +86,7 @@ class Comment(models.Model):
     comment_user = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name='Автор коментария')
     comment_text = models.TextField(verbose_name='Текст коментария')
     comment_time_in = models.DateTimeField(auto_now_add=True)
-    comment_rating = models.FloatField(default=0,verbose_name='Ретинг')
+    comment_rating = models.FloatField(default=0, verbose_name='Ретинг')
 
     def like(self):
         self.comment_rating += 1
@@ -105,3 +106,8 @@ class Comment(models.Model):
         verbose_name = 'Коментарий'
         verbose_name_plural = 'Коментарии'
         ordering = ['comment_time_in']
+
+
+# class Subscription(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='subscriptions', verbose_name='Пользователь подписки')
+#     category = models.ForeignKey(to='Category', on_delete=models.CASCADE, related_name='subscriptions', verbose_name='Подписка')

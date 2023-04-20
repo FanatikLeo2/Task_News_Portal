@@ -11,7 +11,12 @@
     <h6>{% current_time %}</h6>
     <hr>
     <h2>Новости</h2>
-    Всего: {{ page_obj.paginator.count }}
+    Категория: {{category.category_name}}
+    {% if is_not_subscriber %}
+        <a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a>
+    {% else %}
+        <a href="{% url 'unsubscribe' category.id %}" class="btn btn-secondary btn-sm">Отписаться</a>
+    {% endif %}
     <hr>
     <a class="btn btn-secondary btn-sm" href="{% url 'post_search' %}">Поиск</a>
     {% if not is_author %}
@@ -21,8 +26,8 @@
         <a class="btn btn-secondary btn-sm" href="{% url 'create_post' %}">Добавить новость</a>
     {% endif %}
     <hr>
-    {% if post %}
-        {% for post in post %}
+    {% if category_news_list %}
+        {% for post in category_news_list %}
             <style>
             .mylink{color:black; text-decoration: none}
             .mylink:hover{color:black; text-decoration: underline}
@@ -38,21 +43,6 @@
             <hr>
         {% endfor %}
     {% else %}
-       <h2>Новостей нет!</h2>
+        <h2>Новостей нет!</h2>
     {% endif %}
-   {% if page_obj.has_previous %}
-       <a class="mylink" href="?{% url_replace page=1 %}">1</a>
-       {% if page_obj.previous_page_number != 1 %}
-           ...
-           <a class="mylink" href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
-       {% endif %}
-   {% endif %}
-   {{ page_obj.number }}
-   {% if page_obj.has_next %}
-       <a class="mylink" href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
-       {% if paginator.num_pages != page_obj.next_page_number %}
-           ...
-           <a class="mylink" href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
-       {% endif %}
-   {% endif %}
 {% endblock content %}

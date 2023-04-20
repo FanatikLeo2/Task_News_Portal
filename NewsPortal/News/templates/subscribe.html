@@ -1,0 +1,7 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+    <h6> {{ message }} {{ category }}</h6>
+    <hr>
+    <a class="btn btn-secondary btn-sm" href="{% url 'post_list' %}">Понятно</a>
+{% endblock content %}

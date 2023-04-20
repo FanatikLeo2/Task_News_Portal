@@ -3,13 +3,15 @@
 {% load custom_filters %}
 
 {% block title %}
-{{ com.comment_text|truncatechars:20|censor }}
+    {{ com.comment_text|truncatechars:20|censor }}
 {% endblock title %}
 
 {% block content %}
-<p>{{ com.comment_time_in|date:'d.M.Y H:m'}}</p>
-<hr>
-<p>{{ com.comment_text }}</p>
-<hr>
-<h6>Автор - {{ com.comment_user }}</h6>
+    <p>{{ com.comment_time_in|date:'d.M.Y H:m'}}</p>
+    <hr>
+    <p>{{ com.comment_text|censor }}</p>
+    <hr>
+    <h6>{{ com.comment_user }}</h6>
+    <hr>
+    <a class="btn btn-secondary btn-sm" href="/news/{{ com.comment_post.id }}">Назад</a>
 {% endblock content %}

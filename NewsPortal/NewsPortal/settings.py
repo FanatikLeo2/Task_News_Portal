@@ -40,12 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     # 'django.contrib.flatpages',
-    'News',
+    'News.apps.NewsConfig',
     'django_filters',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -146,9 +147,29 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+SITE_URL = 'http://127.0.0.1:8000'
 
 ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 
 LOGIN_REDIRECT_URL = "/news"
 LOGOUT_REDIRECT_URL = '/news'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "fanatikleo@yandex.ru"
+EMAIL_HOST_PASSWORD = "wfbframhrathycne"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = "fanatikleo@yandex.ru"
+
+SERVER_EMAIL = "fanatikleo@yandex.ru"
+ADMINS = (
+    ('FanatikLeo', 'leonfar@yandex.ru'),
+)
+
+APSCHEDULER_DATATIME_FORMAT = 'N j,Y, f:s a'
+APSCHEDULER_RUN_NOW_TIMEOUT = 25

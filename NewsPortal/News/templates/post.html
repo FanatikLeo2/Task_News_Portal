@@ -3,29 +3,28 @@
 {% load custom_filters %}
 
 {% block title %}
-{{ post.post_title|censor }}
+    {{ post.post_title|censor }}
 {% endblock title %}
 
 {% block content %}
-<h3>{{ post.post_title|censor }}</h3>
-<hr>
-<h6>{{ post.post_time_in|date:'H:m d.M.Y'}}</h6>
-<hr>
-{{ post.post_text|censor }}
-<br>
-<br>
-<h6>Автор - {{ post.post_author }}</h6>
- <hr>
-{% if perms.News.change_post or post.post_author == request.user.author %}
-<a class="my link" href="/news/{{ post.id }}/update"><h6>Изменить</h6></a>
-{% endif %}
-{% if perms.News.delete_post %}
-<a class="my link" href="/news/{{ post.id }}/delete"><h6>Удалить</h6></a>
-{% endif %}
-   <hr>
-<h5>Комментарии ({{ post.comment_set.all|length }}) :</h5>
-   <hr>
-   {% if post.comment_set.all %}
+    <h3>{{ post.post_title|censor }}</h3>
+    <hr>
+    <h6>{{ post.post_time_in|date:'H:m d.M.Y'}}</h6>
+    <hr>
+    {{ post.post_text|censor }}
+    <br>
+    <br>
+    <h6>Автор - {{ post.post_author }}</h6>
+    {% if perms.News.change_post or post.post_author == request.user.author %}
+        <a class="btn btn-secondary btn-sm" href="/news/{{ post.id }}/update">Изменить</a>
+    {% endif %}
+    {% if perms.News.delete_post or post.post_author == request.user.author%}
+        <a class="btn btn-secondary btn-sm" href="/news/{{ post.id }}/delete">Удалить</a>
+    {% endif %}
+    <hr>
+    <h5>Комментарии ({{ post.comment_set.all|length }}) :</h5>
+    <hr>
+    {% if post.comment_set.all %}
         {% for comment in post.comment_set.all %}
             <style>
             .mylink{color:black; text-decoration: none}
@@ -35,13 +34,14 @@
             <p>{{ comment.comment_time_in|date:'H:m d.M.Y'}}</p>
             <a class="mylink" href="{{ comment.get_absolute_url }}">
                 <p>"{{ comment.comment_text|censor }}"</p>
-                 <h6 style="text-align: right;">{{ comment.comment_user.username }}</h6>
+                <h6 style="text-align: right;">{{ comment.comment_user.username }}</h6>
+            </a>
             <hr>
         {% endfor %}
     {% else %}
        <h6>Коментариев нет!</h6>
     {% endif %}
-                {% if request.user.is_authenticated %}
-<a class="my link" href="/news/{{ post.id }}/create_comment"><h6>Оставить коментарий</h6></a>
-{% endif %}
+    {% if request.user.is_authenticated %}
+        <a class="btn btn-secondary btn-sm" href="/news/{{ post.id }}/create_comment">Оставить коментарий</a>
+    {% endif %}
 {% endblock content %}

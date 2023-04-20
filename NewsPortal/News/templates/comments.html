@@ -3,15 +3,16 @@
 {% load custom_filters %}
 
 {% block title %}
-Все комментарии
+    Комментарии
 {% endblock title %}
 
 {% block content %}
-<h6>{{ time_now }}</h6>
-   <hr>
-<h2>Все комментарии ( {{ page_obj.paginator.count }} )</h2>
-   <hr>
-   {% if comment %}
+    <h6>{{ time_now }}</h6>
+    <hr>
+    <h2>Комментарии</h2>
+    Всего: {{ page_obj.paginator.count }}
+    <hr>
+    {% if comment %}
         {% for comment in comment %}
             <style>
             .mylink{color:black; text-decoration: none}
@@ -35,23 +36,19 @@
             <hr>
         {% endfor %}
     {% else %}
-       <h2>Коментариев нет!</h2>
+        <h2>Коментариев нет!</h2>
     {% endif %}
- {% if page_obj.has_previous %}
-       <a href="?page=1">1</a>
-       {% if page_obj.previous_page_number != 1 %}
-           ...
-           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
-       {% endif %}
+    {% if page_obj.has_previous %}
+        <a class="mylink" href="?page=1">1</a>
+        {% if page_obj.previous_page_number != 1 %}...
+            <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
    {% endif %}
-
    {{ page_obj.number }}
-
    {% if page_obj.has_next %}
-       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-       {% if paginator.num_pages != page_obj.next_page_number %}
-           ...
-           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       <a class="mylink" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}...
+           <a class="mylink" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
        {% endif %}
    {% endif %}
 {% endblock content %}
