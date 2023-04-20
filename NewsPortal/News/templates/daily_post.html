@@ -2,17 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Уведомление</title>
 </head>
 <body>
-<h2>Здравствуй! Новые статьи за неделю!</h2>
+<h2>Здравствуй! Новые статьи за неделю по вашим подпискам!</h2>
 <ul>
     {% for post in posts %}
-        <li><a href="{{ link }}{{ post.get_absolute_url }}">{{ post.post_title }}
-            {% for category in post.post_category.all %}
-                {{ category }}
-            {% endfor %}
-        </a></li>
+        {% for category in post.post_category.all %}
+            {{ category }}
+        {% endfor %}
+        <li><a href="{{ link }}{{ post.get_absolute_url }}">{{ post.post_title }}</a></li>
     {% endfor %}
 </ul>
 </body>
