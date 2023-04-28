@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 from django.db.models import Exists, OuterRef
 from django.urls import reverse_lazy
@@ -24,6 +25,7 @@ class PostList(ListView):
         context['time_now'] = datetime.now()
         context['is_author'] = self.request.user.groups.filter(name='authors').exists()
         return context
+
 
 
 class PostListSearch(ListView):
