@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.shortcuts import reverse
+from django.core.cache import cache
 
 
 class Author(models.Model):
@@ -53,6 +54,11 @@ class Post(models.Model):
     post_text = models.TextField(verbose_name='Текст')
     post_rating = models.FloatField(default=0, verbose_name='Рейтинг')
 
+    @property
+    def in_rating(self):
+        if self.post_rating > 0:
+            return self.post_rating
+
     def __str__(self):
         return f'{self.post_title[0:50]}... {self.post_text[0:50]}...'
 
@@ -69,6 +75,10 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
+
+    # def save(self, *args, **kwargs):    разобраться с кешированием
+    #     super().save(*args, **kwargs)
+    #     cache.delete(f'post-{self.pk}')
 
     class Meta:
         verbose_name = 'Пост'

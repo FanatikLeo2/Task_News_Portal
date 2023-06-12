@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from .models import *
 from .filters import PostFilter
 from .forms import PostCreateForm, CommentCreateForm
+from django.core.cache import cache
 
 
 class PostList(ListView):
@@ -25,7 +26,6 @@ class PostList(ListView):
         context['time_now'] = datetime.now()
         context['is_author'] = self.request.user.groups.filter(name='authors').exists()
         return context
-
 
 
 class PostListSearch(ListView):
@@ -50,6 +50,14 @@ class PostDetail(DetailView):
     model = Post
     template_name = 'post.html'
     context_object_name = 'post'
+    queryset = Post.objects.all()
+
+    # def get_object(self, *args, **kwargs):                    разобраться с кешированием
+    #     obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+    #     if not obj:
+    #         obj = super().get_object(queryset=self.queryset)
+    #         cache.set(f'post-{self.kwargs["pk"]}', obj)
+    #     return obj
 
 
 class PostCreate(LoginRequiredMixin, CreateView):

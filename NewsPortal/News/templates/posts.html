@@ -21,26 +21,31 @@
         <a class="btn btn-secondary" href="{% url 'create_post' %}">Добавить новость</a>
     {% endif %}
     <hr>
-    {% if post %}
-        {% for post in post %}
-            <style>
-            .mylink{color:black; text-decoration: none}
-            .mylink:hover{color:black; text-decoration: underline}
-            .mylink:visited{color:grey; text-decoration: none}
-            </style>
-            <p>{{ post.post_time_in|date:'d.M.Y'}}</p>
-            Категория: {% for cat in post.post_category.all %}
-            <a class="mylink" href="{% url 'category_list' cat.id %}">{{ cat }}
-            {% endfor %}
-            <a class="mylink" href="/news/{{ post.id }}"><h5>{{ post.post_title|censor }}</h5></a>
-            <br>
-            <p>{{ post.post_text|truncatechars:100|censor }}</p>
-            <hr>
-        {% endfor %}
-    {% else %}
-       <h2>Новостей нет!</h2>
-    {% endif %}
-   {% if page_obj.has_previous %}
+    {% load cache %}
+    {% cache 60 postlist %}
+        {% block postlist %}
+            {% if post %}
+                {% for post in post %}
+                    <style>
+                    .mylink{color:black; text-decoration: none}
+                    .mylink:hover{color:black; text-decoration: underline}
+                    .mylink:visited{color:grey; text-decoration: none}
+                    </style>
+                    <p>{{ post.post_time_in|date:'d.M.Y'}}</p>
+                    Категория: {% for cat in post.post_category.all %}
+                    <a class="mylink" href="{% url 'category_list' cat.id %}">{{ cat }}
+                    {% endfor %}
+                    <a class="mylink" href="/news/{{ post.id }}"><h5>{{ post.post_title|censor }}</h5></a>
+                    <br>
+                    <p>{{ post.post_text|truncatechars:100|censor }}</p>
+                    <hr>
+                {% endfor %}
+            {% else %}
+               <h2>Новостей нет!</h2>
+            {% endif %}
+        {% endblock postlist %}
+    {% endcache %}
+    {% if page_obj.has_previous %}
        <a class="btn btn-secondary btn-sm" href="?{% url_replace page=1 %}">1</a>
        {% if page_obj.previous_page_number != 1 %}
            ...
@@ -55,4 +60,5 @@
            <a class="btn btn-secondary btn-sm" href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
        {% endif %}
    {% endif %}
+
 {% endblock content %}
