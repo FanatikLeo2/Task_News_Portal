@@ -1,12 +1,11 @@
 from django import forms
 from .models import Post, Comment
-from django.utils.translation import gettext
 from django.core.exceptions import ValidationError
 
 
 class PostCreateForm(forms.ModelForm):
-    post_title = forms.CharField(min_length=5, label=gettext('Post title'))
-    post_text = forms.CharField(min_length=20, label=gettext('Post text'))
+    # post_title = forms.CharField(min_length=5)
+    # post_text = forms.CharField(min_length=20)
 
     class Meta:
         model = Post

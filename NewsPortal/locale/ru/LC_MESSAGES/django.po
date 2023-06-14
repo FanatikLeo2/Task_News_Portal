@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-14 16:24+0300\n"
+"POT-Creation-Date: 2023-06-14 23:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,96 +20,88 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\News\filters.py:17
+#: .\News\filters.py:16
 msgid "Search for title"
-msgstr "Поиск по названию"
+msgstr "Поиск по новостям"
 
-#: .\News\filters.py:28
+#: .\News\filters.py:27
 msgid "Search for category"
-msgstr "Поиск по категории"
+msgstr "Поиск по категориям"
 
-#: .\News\forms.py:8
-msgid "Post title"
-msgstr "Заголовок поста"
-
-#: .\News\forms.py:9
-msgid "Post text"
-msgstr "Текст поста"
-
-#: .\News\models.py:25 .\News\models.py:49 .\News\templates\post.html:18
+#: .\News\models.py:26 .\News\models.py:50 .\News\templates\post.html:18
 msgid "Author"
 msgstr "Автор"
 
-#: .\News\models.py:26
+#: .\News\models.py:27
 msgid "Authors"
 msgstr "Авторы"
 
-#: .\News\models.py:37 .\News\templates\category_list.html:15
-#: .\News\templates\posts.html:36
+#: .\News\models.py:38 .\News\templates\category_list.html:15
+#: .\News\templates\posts.html:47
 msgid "Category"
 msgstr "Категория"
 
-#: .\News\models.py:38
+#: .\News\models.py:39
 msgid "Categories"
 msgstr "Категории"
 
-#: .\News\models.py:45 .\News\templates\category_list.html:8
+#: .\News\models.py:46 .\News\templates\category_list.html:8
 #: .\News\templates\category_list.html:14
-#: .\News\templates\flatpages\default.html:49 .\News\templates\posts.html:8
-#: .\News\templates\posts.html:14
+#: .\News\templates\flatpages\default.html:42 .\News\templates\posts.html:9
+#: .\News\templates\posts.html:25
 msgid "News"
 msgstr "Новости"
 
-#: .\News\models.py:46 .\News\models.py:84
+#: .\News\models.py:47 .\News\models.py:85
 msgid "Post"
 msgstr "Статья"
 
-#: .\News\models.py:50
+#: .\News\models.py:51
 msgid "Post type"
 msgstr "Тип поста"
 
-#: .\News\models.py:51
+#: .\News\models.py:52
 msgid "Date of publication"
 msgstr "Дата публикации"
 
-#: .\News\models.py:52
+#: .\News\models.py:53
 msgid "Post category"
 msgstr "Категория поста"
 
-#: .\News\models.py:53
+#: .\News\models.py:54
 msgid "Title"
 msgstr "Заголовок"
 
-#: .\News\models.py:54
+#: .\News\models.py:55
 msgid "Text"
 msgstr "Текст"
 
-#: .\News\models.py:55 .\News\models.py:99
+#: .\News\models.py:56 .\News\models.py:100
 msgid "Rating"
-msgstr "Рэйтинг"
+msgstr "Рейтинг"
 
-#: .\News\models.py:85
+#: .\News\models.py:86
 msgid "Posts"
 msgstr "Посты"
 
-#: .\News\models.py:95
+#: .\News\models.py:96
 msgid "Comments post"
 msgstr "Комментарий поста"
 
-#: .\News\models.py:96
+#: .\News\models.py:97
 msgid "Comments author"
 msgstr "Автор комментария"
 
-#: .\News\models.py:97
+#: .\News\models.py:98
 msgid "Comments text"
 msgstr "Текст комментария"
 
-#: .\News\models.py:116 .\News\templates\comments.html:25
+#: .\News\models.py:117 .\News\templates\comments.html:25
 msgid "Comment"
 msgstr "Комментарий"
 
-#: .\News\models.py:117 .\News\templates\comments.html:7
-#: .\News\templates\comments.html:13 .\News\templates\flatpages\default.html:51
+#: .\News\models.py:118 .\News\templates\comments.html:7
+#: .\News\templates\comments.html:13 .\News\templates\flatpages\default.html:44
 #: .\News\templates\post.html:26
 msgid "Comments"
 msgstr "Комментарии"
@@ -263,20 +255,20 @@ msgstr "Подписатся"
 msgid "Unsubscribe"
 msgstr "Отписаться"
 
-#: .\News\templates\category_list.html:22 .\News\templates\posts.html:17
+#: .\News\templates\category_list.html:22 .\News\templates\posts.html:28
 #: .\News\templates\search.html:8 .\News\templates\search.html:17
 msgid "Search"
 msgstr "Поиск"
 
-#: .\News\templates\category_list.html:24 .\News\templates\posts.html:19
+#: .\News\templates\category_list.html:24 .\News\templates\posts.html:30
 msgid "Become an author!"
 msgstr "Стать автором"
 
-#: .\News\templates\category_list.html:27 .\News\templates\posts.html:22
+#: .\News\templates\category_list.html:27 .\News\templates\posts.html:33
 msgid "Add News"
 msgstr "Добавить новость"
 
-#: .\News\templates\category_list.html:47 .\News\templates\posts.html:45
+#: .\News\templates\category_list.html:47 .\News\templates\posts.html:56
 #: .\News\templates\search.html:37
 msgid "There is no news!"
 msgstr "Новостей нет!"
@@ -295,7 +287,7 @@ msgstr "Написать комментарий"
 msgid "Save"
 msgstr "Сохранить"
 
-#: .\News\templates\comments.html:14 .\News\templates\posts.html:15
+#: .\News\templates\comments.html:14 .\News\templates\posts.html:26
 msgid "Total"
 msgstr "Всего"
 
@@ -303,31 +295,23 @@ msgstr "Всего"
 msgid "No comments"
 msgstr "Нет комментариев"
 
-#: .\News\templates\flatpages\default.html:26
-msgid "Time zone"
-msgstr "Часовой пояс"
-
-#: .\News\templates\flatpages\default.html:32
-msgid "Set"
-msgstr "Установить"
-
-#: .\News\templates\flatpages\default.html:45
+#: .\News\templates\flatpages\default.html:38
 msgid "Sponsores"
 msgstr "Спонсоры"
 
-#: .\News\templates\flatpages\default.html:52
+#: .\News\templates\flatpages\default.html:45
 msgid "Administration"
 msgstr "Администрация"
 
-#: .\News\templates\flatpages\default.html:53
+#: .\News\templates\flatpages\default.html:46
 msgid "Index"
 msgstr "Данные"
 
-#: .\News\templates\flatpages\default.html:57
+#: .\News\templates\flatpages\default.html:50
 msgid "Logout"
 msgstr "Выйти"
 
-#: .\News\templates\flatpages\default.html:59
+#: .\News\templates\flatpages\default.html:52
 msgid "Login"
 msgstr "Войти"
 
@@ -350,10 +334,16 @@ msgid "Create post"
 msgstr "Создать новость"
 
 #: .\News\templates\post_deleteform.html:6
-#, fuzzy
-#| msgid "Delete"
 msgid "Delete news"
-msgstr "Удалить"
+msgstr "Удалить новость"
+
+#: .\News\templates\posts.html:15
+msgid "Time zone"
+msgstr "Часовой пояс"
+
+#: .\News\templates\posts.html:21
+msgid "Set"
+msgstr "Установить"
 
 #: .\News\templates\search.html:13
 msgid "Search for news"
@@ -363,10 +353,10 @@ msgstr "Поиск по новостям"
 msgid "Ok"
 msgstr "Понятно"
 
-#: .\News\views.py:198
+#: .\News\views.py:199
 msgid "You have successfully subscribed to the category news subscription"
 msgstr "Вы успешно подписались на подписку новостей категории"
 
-#: .\News\views.py:207
+#: .\News\views.py:208
 msgid "You have successfully unsubscribed to the category news subscription"
 msgstr "Вы успешно отподписались на подписку новостей категории"

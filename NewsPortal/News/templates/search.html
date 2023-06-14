@@ -24,7 +24,7 @@
             .mylink:hover{color:black; text-decoration: underline}
             .mylink:visited{color:grey; text-decoration: none}
             </style>
-            Категория:
+            {% trans "Category" %}:
             {% for cat in post.post_category.all %}
                 {{ cat.category_name }}
             {% endfor %}

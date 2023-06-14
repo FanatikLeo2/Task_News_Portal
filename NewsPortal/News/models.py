@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext
+from django.utils.translation import gettext_lazy
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.shortcuts import reverse
@@ -22,8 +23,8 @@ class Author(models.Model):
         self.save()
 
     class Meta:
-        verbose_name = gettext('Author')
-        verbose_name_plural = gettext('Authors')
+        verbose_name = gettext_lazy('Author')
+        verbose_name_plural = gettext_lazy('Authors')
 
 
 class Category(models.Model):
@@ -34,8 +35,8 @@ class Category(models.Model):
         return f'{self.category_name}'
 
     class Meta:
-        verbose_name = gettext('Category')
-        verbose_name_plural = gettext('Categories')
+        verbose_name = gettext_lazy('Category')
+        verbose_name_plural = gettext_lazy('Categories')
 
 
 class Post(models.Model):
@@ -46,13 +47,13 @@ class Post(models.Model):
         (ARTICLE, gettext('Post')),
     ]
 
-    post_author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name=gettext('Author'))
-    post_type = models.CharField(max_length=2, choices=POSTTYPES, default=NEWS, verbose_name=gettext('Post type'))
-    post_time_in = models.DateTimeField(auto_now_add=True, verbose_name=gettext('Date of publication'))
-    post_category = models.ManyToManyField(Category, through='PostCategory', verbose_name=gettext('Post category'))
-    post_title = models.CharField(max_length=255, verbose_name=gettext('Title'))
-    post_text = models.TextField(verbose_name=gettext('Text'))
-    post_rating = models.FloatField(default=0, verbose_name=gettext('Rating'))
+    post_author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name=gettext_lazy('Author'))
+    post_type = models.CharField(max_length=2, choices=POSTTYPES, default=NEWS, verbose_name=gettext_lazy('Post type'))
+    post_time_in = models.DateTimeField(auto_now_add=True, verbose_name=gettext_lazy('Date of publication'))
+    post_category = models.ManyToManyField(Category, through='PostCategory', verbose_name=gettext_lazy('Post category'))
+    post_title = models.CharField(max_length=255, verbose_name=gettext_lazy('Title'))
+    post_text = models.TextField(verbose_name=gettext_lazy('Text'))
+    post_rating = models.FloatField(default=0, verbose_name=gettext_lazy('Rating'))
 
     @property
     def in_rating(self):
@@ -81,8 +82,8 @@ class Post(models.Model):
     #     cache.delete(f'post-{self.pk}')
 
     class Meta:
-        verbose_name = gettext('Post')
-        verbose_name_plural = gettext('Posts')
+        verbose_name = gettext_lazy('Post')
+        verbose_name_plural = gettext_lazy('Posts')
         ordering = ['-post_time_in']
 
 
@@ -94,7 +95,7 @@ class PostCategory(models.Model):
 class Comment(models.Model):
     comment_post = models.ForeignKey(Post, on_delete=models.CASCADE,verbose_name=gettext('Comments post'))
     comment_user = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name=gettext('Comments author'))
-    comment_text = models.TextField(verbose_name=gettext('Comments text'))
+    comment_text = models.TextField(verbose_name=gettext_lazy('Comments text'))
     comment_time_in = models.DateTimeField(auto_now_add=True)
     comment_rating = models.FloatField(default=0, verbose_name=gettext('Rating'))
 
@@ -113,8 +114,8 @@ class Comment(models.Model):
         return reverse('show_comment', kwargs={'comment_text': self.comment_text})
 
     class Meta:
-        verbose_name = gettext('Comment')
-        verbose_name_plural = gettext('Comments')
+        verbose_name = gettext_lazy('Comment')
+        verbose_name_plural = gettext_lazy('Comments')
         ordering = ['comment_time_in']
 
 
