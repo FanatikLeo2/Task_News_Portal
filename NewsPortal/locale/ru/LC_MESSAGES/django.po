@@ -1,0 +1,372 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-14 16:24+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\News\filters.py:17
+msgid "Search for title"
+msgstr "Поиск по названию"
+
+#: .\News\filters.py:28
+msgid "Search for category"
+msgstr "Поиск по категории"
+
+#: .\News\forms.py:8
+msgid "Post title"
+msgstr "Заголовок поста"
+
+#: .\News\forms.py:9
+msgid "Post text"
+msgstr "Текст поста"
+
+#: .\News\models.py:25 .\News\models.py:49 .\News\templates\post.html:18
+msgid "Author"
+msgstr "Автор"
+
+#: .\News\models.py:26
+msgid "Authors"
+msgstr "Авторы"
+
+#: .\News\models.py:37 .\News\templates\category_list.html:15
+#: .\News\templates\posts.html:36
+msgid "Category"
+msgstr "Категория"
+
+#: .\News\models.py:38
+msgid "Categories"
+msgstr "Категории"
+
+#: .\News\models.py:45 .\News\templates\category_list.html:8
+#: .\News\templates\category_list.html:14
+#: .\News\templates\flatpages\default.html:49 .\News\templates\posts.html:8
+#: .\News\templates\posts.html:14
+msgid "News"
+msgstr "Новости"
+
+#: .\News\models.py:46 .\News\models.py:84
+msgid "Post"
+msgstr "Статья"
+
+#: .\News\models.py:50
+msgid "Post type"
+msgstr "Тип поста"
+
+#: .\News\models.py:51
+msgid "Date of publication"
+msgstr "Дата публикации"
+
+#: .\News\models.py:52
+msgid "Post category"
+msgstr "Категория поста"
+
+#: .\News\models.py:53
+msgid "Title"
+msgstr "Заголовок"
+
+#: .\News\models.py:54
+msgid "Text"
+msgstr "Текст"
+
+#: .\News\models.py:55 .\News\models.py:99
+msgid "Rating"
+msgstr "Рэйтинг"
+
+#: .\News\models.py:85
+msgid "Posts"
+msgstr "Посты"
+
+#: .\News\models.py:95
+msgid "Comments post"
+msgstr "Комментарий поста"
+
+#: .\News\models.py:96
+msgid "Comments author"
+msgstr "Автор комментария"
+
+#: .\News\models.py:97
+msgid "Comments text"
+msgstr "Текст комментария"
+
+#: .\News\models.py:116 .\News\templates\comments.html:25
+msgid "Comment"
+msgstr "Комментарий"
+
+#: .\News\models.py:117 .\News\templates\comments.html:7
+#: .\News\templates\comments.html:13 .\News\templates\flatpages\default.html:51
+#: .\News\templates\post.html:26
+msgid "Comments"
+msgstr "Комментарии"
+
+#: .\News\templates\News\account\base.html:16
+msgid "Messages:"
+msgstr "Сообщения:"
+
+#: .\News\templates\News\account\base.html:26
+msgid "Menu:"
+msgstr "Меню:"
+
+#: .\News\templates\News\account\base.html:29
+msgid "Change E-mail"
+msgstr "Сменить почту"
+
+#: .\News\templates\News\account\base.html:30
+#: .\News\templates\News\account\logout.html:5
+#: .\News\templates\News\account\logout.html:8
+#: .\News\templates\News\account\logout.html:17
+msgid "Sign Out"
+msgstr "Отключиться"
+
+#: .\News\templates\News\account\base.html:32
+#: .\News\templates\News\account\login.html:6
+#: .\News\templates\News\account\login.html:10
+#: .\News\templates\News\account\login.html:43
+#: .\News\templates\News\socialaccount\login.html:4
+msgid "Sign In"
+msgstr "Авторизоваться"
+
+#: .\News\templates\News\account\base.html:33
+#: .\News\templates\News\account\signup.html:8
+#: .\News\templates\News\account\signup.html:18
+msgid "Sign Up"
+msgstr ""
+
+#: .\News\templates\News\account\email\base_message.txt:1
+#, python-format
+msgid "Привет с сайта %(site_name)s!"
+msgstr ""
+
+#: .\News\templates\News\account\email\base_message.txt:5
+#, python-format
+msgid ""
+"Спасибо за использование %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+
+#: .\News\templates\News\account\email\email_confirmation_message.txt:5
+#, python-format
+msgid ""
+"Вы получили это сообщение, потому что пользователь %(user_display)s указал "
+"этот email при регистрации на сайте %(site_domain)s.\n"
+"\n"
+"Для подтверждения регистрации пройдите по ссылке %(activate_url)s\n"
+"\n"
+"Хорошего дня!\n"
+msgstr ""
+
+#: .\News\templates\News\account\email_confirm.html:6
+#: .\News\templates\News\account\email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr "Подтвердить адрес почты"
+
+#: .\News\templates\News\account\email_confirm.html:16
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: .\News\templates\News\account\email_confirm.html:20
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: .\News\templates\News\account\email_confirm.html:27
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: .\News\templates\News\account\login.html:15
+#, python-format
+msgid ""
+"Please sign in with one\n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign "
+"up</a>\n"
+"for a %(site_name)s account and sign in below:"
+msgstr ""
+
+#: .\News\templates\News\account\login.html:25
+msgid "or"
+msgstr "или"
+
+#: .\News\templates\News\account\login.html:32
+#, python-format
+msgid ""
+"If you have not created an account yet, then please\n"
+"<a href=\"%(signup_url)s\">sign up</a> first."
+msgstr ""
+
+#: .\News\templates\News\account\login.html:42
+msgid "Forgot Password?"
+msgstr "Забыли пароль?"
+
+#: .\News\templates\News\account\logout.html:10
+msgid "Are you sure you want to sign out?"
+msgstr "Вы уверены,что хотите выйти?"
+
+#: .\News\templates\News\account\signup.html:5
+msgid "Signup"
+msgstr ""
+
+#: .\News\templates\News\account\signup.html:10
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+
+#: .\News\templates\News\socialaccount\login.html:8
+#, python-format
+msgid "Connect %(provider)s"
+msgstr ""
+
+#: .\News\templates\News\socialaccount\login.html:10
+#, python-format
+msgid "You are about to connect a new third party account from %(provider)s."
+msgstr ""
+
+#: .\News\templates\News\socialaccount\login.html:12
+#, python-format
+msgid "Sign In Via %(provider)s"
+msgstr ""
+
+#: .\News\templates\News\socialaccount\login.html:14
+#, python-format
+msgid "You are about to sign in using a third party account from %(provider)s."
+msgstr ""
+
+#: .\News\templates\News\socialaccount\login.html:19
+msgid "Continue"
+msgstr "Продолжить"
+
+#: .\News\templates\category_list.html:17
+msgid "Subscribe"
+msgstr "Подписатся"
+
+#: .\News\templates\category_list.html:19
+msgid "Unsubscribe"
+msgstr "Отписаться"
+
+#: .\News\templates\category_list.html:22 .\News\templates\posts.html:17
+#: .\News\templates\search.html:8 .\News\templates\search.html:17
+msgid "Search"
+msgstr "Поиск"
+
+#: .\News\templates\category_list.html:24 .\News\templates\posts.html:19
+msgid "Become an author!"
+msgstr "Стать автором"
+
+#: .\News\templates\category_list.html:27 .\News\templates\posts.html:22
+msgid "Add News"
+msgstr "Добавить новость"
+
+#: .\News\templates\category_list.html:47 .\News\templates\posts.html:45
+#: .\News\templates\search.html:37
+msgid "There is no news!"
+msgstr "Новостей нет!"
+
+#: .\News\templates\comment.html:17
+msgid "Back"
+msgstr "Назад"
+
+#: .\News\templates\comment_createform.html:8
+#: .\News\templates\comment_createform.html:14
+msgid "Create comment"
+msgstr "Написать комментарий"
+
+#: .\News\templates\comment_createform.html:19
+#: .\News\templates\post_createform.html:17
+msgid "Save"
+msgstr "Сохранить"
+
+#: .\News\templates\comments.html:14 .\News\templates\posts.html:15
+msgid "Total"
+msgstr "Всего"
+
+#: .\News\templates\comments.html:40 .\News\templates\post.html:43
+msgid "No comments"
+msgstr "Нет комментариев"
+
+#: .\News\templates\flatpages\default.html:26
+msgid "Time zone"
+msgstr "Часовой пояс"
+
+#: .\News\templates\flatpages\default.html:32
+msgid "Set"
+msgstr "Установить"
+
+#: .\News\templates\flatpages\default.html:45
+msgid "Sponsores"
+msgstr "Спонсоры"
+
+#: .\News\templates\flatpages\default.html:52
+msgid "Administration"
+msgstr "Администрация"
+
+#: .\News\templates\flatpages\default.html:53
+msgid "Index"
+msgstr "Данные"
+
+#: .\News\templates\flatpages\default.html:57
+msgid "Logout"
+msgstr "Выйти"
+
+#: .\News\templates\flatpages\default.html:59
+msgid "Login"
+msgstr "Войти"
+
+#: .\News\templates\post.html:20
+msgid "Edit"
+msgstr "Изменить"
+
+#: .\News\templates\post.html:23 .\News\templates\post_deleteform.html:10
+#: .\News\templates\post_deleteform.html:11
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\News\templates\post.html:46
+msgid "Write a comment"
+msgstr "Написать комментарий"
+
+#: .\News\templates\post_createform.html:7
+#: .\News\templates\post_createform.html:12
+msgid "Create post"
+msgstr "Создать новость"
+
+#: .\News\templates\post_deleteform.html:6
+#, fuzzy
+#| msgid "Delete"
+msgid "Delete news"
+msgstr "Удалить"
+
+#: .\News\templates\search.html:13
+msgid "Search for news"
+msgstr "Поиск по новостям"
+
+#: .\News\templates\subscribe.html:8 .\News\templates\unsubscribe.html:8
+msgid "Ok"
+msgstr "Понятно"
+
+#: .\News\views.py:198
+msgid "You have successfully subscribed to the category news subscription"
+msgstr "Вы успешно подписались на подписку новостей категории"
+
+#: .\News\views.py:207
+msgid "You have successfully unsubscribed to the category news subscription"
+msgstr "Вы успешно отподписались на подписку новостей категории"
