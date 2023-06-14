@@ -2,27 +2,39 @@
 
 {% load custom_filters %}
 {% load custom_tags %}
+{% load i18n %}
+{% load tz %}
 
 {% block title %}
-    Новости
+    {% trans "News" %}
 {% endblock title %}
 
 {% block content %}
-    <h6>{% current_time %}</h6>
+    {% get_current_timezone as TIME_ZONE %}
+        <form action="" method="POST">{% csrf_token %}
+            <label for="timezone">{% trans "Time zone" %} :</label>
+            <select name="timezone">
+                {% for tz in timezones %}
+                    <option value="{{ tz }}"{% if tz == TIME_ZONE %} selected{% endif %}>{{ tz }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" class="btn btn-secondary" value="{% trans 'Set' %}">
+        </form>
+    <h6>{{ time_now }} {% if time_now|time:'H' >= '19' or time_now|time:'H' <= '07' %}Night{% else %}Day{% endif %}</h6>
     <hr>
-    <h2>Новости</h2>
-    Всего: {{ page_obj.paginator.count }}
+    <h2>{% trans "News" %}</h2>
+    {% trans "Total" %}: {{ page_obj.paginator.count }}
     <hr>
-    <a class="btn btn-secondary" href="{% url 'post_search' %}">Поиск</a>
+    <a class="btn btn-secondary" href="{% url 'post_search' %}">{% trans "Search" %}</a>
     {% if not is_author %}
-        <a class="btn btn-secondary" href="{% url 'account_upgrade' %}">Стать автором!</a>
+        <a class="btn btn-secondary" href="{% url 'account_upgrade' %}">{% trans "Become an author!" %}</a>
     {% endif %}
     {% if perms.News.add_post %}
-        <a class="btn btn-secondary" href="{% url 'create_post' %}">Добавить новость</a>
+        <a class="btn btn-secondary" href="{% url 'create_post' %}">{% trans "Add News" %}</a>
     {% endif %}
     <hr>
     {% load cache %}
-    {% cache 60 postlist %}
+    {% cache 0 postlist %}
         {% block postlist %}
             {% if post %}
                 {% for post in post %}
@@ -32,7 +44,7 @@
                     .mylink:visited{color:grey; text-decoration: none}
                     </style>
                     <p>{{ post.post_time_in|date:'d.M.Y'}}</p>
-                    Категория: {% for cat in post.post_category.all %}
+                    {% trans "Category" %}: {% for cat in post.post_category.all %}
                     <a class="mylink" href="{% url 'category_list' cat.id %}">{{ cat }}
                     {% endfor %}
                     <a class="mylink" href="/news/{{ post.id }}"><h5>{{ post.post_title|censor }}</h5></a>
@@ -41,7 +53,7 @@
                     <hr>
                 {% endfor %}
             {% else %}
-               <h2>Новостей нет!</h2>
+               <h2>{% trans "There is no news!" %}</h2>
             {% endif %}
         {% endblock postlist %}
     {% endcache %}

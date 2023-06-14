@@ -1,6 +1,7 @@
 {% extends 'flatpages/default.html' %}
 
 {% load custom_filters %}
+{% load i18n %}
 
 {% block title %}
     {{ post.post_title|censor }}
@@ -14,15 +15,15 @@
     {{ post.post_text|censor }}
     <br>
     <br>
-    <h6>Автор - {{ post.post_author }}</h6>
+    <h6>{% trans "Author" %} - {{ post.post_author }}</h6>
     {% if perms.News.change_post or post.post_author == request.user.author %}
-        <a class="btn btn-dark" href="/news/{{ post.id }}/update">Изменить</a>
+        <a class="btn btn-dark" href="/news/{{ post.id }}/update">{% trans "Edit" %}</a>
     {% endif %}
     {% if perms.News.delete_post or post.post_author == request.user.author%}
-        <a class="btn btn-danger" href="/news/{{ post.id }}/delete">Удалить</a>
+        <a class="btn btn-danger" href="/news/{{ post.id }}/delete">{% trans "Delete" %}</a>
     {% endif %}
     <hr>
-    <h5>Комментарии ({{ post.comment_set.all|length }}) :</h5>
+    <h5>{% trans "Comments" %} ({{ post.comment_set.all|length }}) :</h5>
     <hr>
     {% if post.comment_set.all %}
         {% for comment in post.comment_set.all %}
@@ -39,9 +40,9 @@
             <hr>
         {% endfor %}
     {% else %}
-       <h6>Коментариев нет!</h6>
+       <h6>{% trans "No comments" %}!</h6>
     {% endif %}
     {% if request.user.is_authenticated %}
-        <a class="btn btn-secondary btn-sm" href="/news/{{ post.id }}/create_comment">Оставить коментарий</a>
+        <a class="btn btn-secondary btn-sm" href="/news/{{ post.id }}/create_comment">{% trans "Write a comment" %}</a>
     {% endif %}
 {% endblock content %}

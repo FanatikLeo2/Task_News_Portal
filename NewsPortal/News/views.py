@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.db.models import Exists, OuterRef
 from django.urls import reverse_lazy
 from datetime import datetime
+from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -11,6 +12,8 @@ from django.http import HttpResponseRedirect
 from .models import *
 from .filters import PostFilter
 from .forms import PostCreateForm, CommentCreateForm
+from django.shortcuts import redirect
+import pytz
 from django.core.cache import cache
 
 
@@ -23,9 +26,14 @@ class PostList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['time_now'] = datetime.now()
+        context['time_now'] = timezone.now()
         context['is_author'] = self.request.user.groups.filter(name='authors').exists()
+        context['timezones'] = pytz.common_timezones
         return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/news')
 
 
 class PostListSearch(ListView):
@@ -42,6 +50,7 @@ class PostListSearch(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['time_now'] = datetime.now()
         context['filterset'] = self.filterset
         return context
 
@@ -68,6 +77,10 @@ class PostCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.post_author = self.request.user.author
         return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['time_now'] = datetime.now()
+        return context
 
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
@@ -173,6 +186,7 @@ class CategoryListView(ListView):
         context = super().get_context_data(**kwargs)
         context['is_not_subscriber'] = self.request.user not in self.post_category.subscribers.all()
         context['category'] = self.post_category
+        context['time_now'] = datetime.now()
         return context
 
 @login_required
@@ -181,7 +195,7 @@ def subscribe(request, pk):
     category = Category.objects.get(id=pk)
     category.subscribers.add(user)
 
-    message = 'Вы успешно подписались на подписку новостей категории'
+    message = gettext('You have successfully subscribed to the category news subscription')
     return render(request, 'subscribe.html', {'category': category, 'message': message})
 
 @login_required
@@ -190,5 +204,5 @@ def unsubscribe(request, pk):
     category = Category.objects.get(id=pk)
     category.subscribers.remove(user)
 
-    message = 'Вы успешно отписались от подписки новостей категории'
+    message = gettext('You have successfully unsubscribed to the category news subscription')
     return render(request, 'unsubscribe.html', {'category': category, 'message': message})

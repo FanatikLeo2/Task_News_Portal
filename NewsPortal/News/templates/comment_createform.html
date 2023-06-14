@@ -1,20 +1,20 @@
 {% extends 'post.html' %}
 
 {% load custom_tags %}
-
+{% load i18n %}
 {% load custom_filters %}
 
 {% block title %}
-    Создание коментария
+    {% trans "Create comment" %}
 {% endblock title %}
 
 {% block content %}
     <h6>{% current_time %}</h6>
     <hr>
-    <h2>Создание коментария</h2>
+    <h2>{% trans "Create comment" %}</h2>
     <hr>
     <form action ="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-    <input type="submit" class="btn btn-success" value="Сохранить"></form>
+    <input type="submit" class="btn btn-success" value="{% trans 'Save' %}"></form>
 {% endblock content %}

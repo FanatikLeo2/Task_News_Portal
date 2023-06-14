@@ -2,28 +2,29 @@
 
 {% load custom_filters %}
 {% load custom_tags %}
+{% load i18n %}
 
 {% block title %}
-    Новости
+    {% trans "News" %}
 {% endblock title %}
 
 {% block content %}
-    <h6>{% current_time %}</h6>
+    <h6>{{ time_now }}</h6>
     <hr>
-    <h2>Новости</h2>
-    Категория: {{category.category_name}}
+    <h2>{% trans "News" %}</h2>
+    {% trans "Category" %}: {{category.category_name}}
     {% if is_not_subscriber %}
-        <a href="{% url 'subscribe' category.id %}" class="btn btn-success">Подписаться</a>
+        <a href="{% url 'subscribe' category.id %}" class="btn btn-success">{% trans "Subscribe" %}</a>
     {% else %}
-        <a href="{% url 'unsubscribe' category.id %}" class="btn btn-danger">Отписаться</a>
+        <a href="{% url 'unsubscribe' category.id %}" class="btn btn-danger">{% trans "Unsubscribe" %}</a>
     {% endif %}
     <hr>
-    <a class="btn btn-secondary" href="{% url 'post_search' %}">Поиск</a>
+    <a class="btn btn-secondary" href="{% url 'post_search' %}">{% trans "Search" %}</a>
     {% if not is_author %}
-        <a class="btn btn-secondary" href="{% url 'account_upgrade' %}">Стать автором!</a>
+        <a class="btn btn-secondary" href="{% url 'account_upgrade' %}">{% trans "Become an author!" %}</a>
     {% endif %}
     {% if perms.News.add_post %}
-        <a class="btn btn-secondary" href="{% url 'create_post' %}">Добавить новость</a>
+        <a class="btn btn-secondary" href="{% url 'create_post' %}">{% trans "Add News" %}</a>
     {% endif %}
     <hr>
     {% if category_news_list %}
@@ -43,7 +44,7 @@
             <hr>
         {% endfor %}
     {% else %}
-        <h2>Новостей нет!</h2>
+        <h2>{% trans "There is no news!" %}</h2>
     {% endif %}
     {% if page_obj.has_previous %}
        <a class="btn btn-secondary btn-sm" href="?{% url_replace page=1 %}">1</a>

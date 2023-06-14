@@ -1,16 +1,17 @@
 {% extends 'flatpages/default.html' %}
 
 {% load custom_filters %}
+{% load i18n %}
 
 {% block title %}
-    Комментарии
+    {% trans "Comments" %}
 {% endblock title %}
 
 {% block content %}
     <h6>{{ time_now }}</h6>
     <hr>
-    <h2>Комментарии</h2>
-    Всего: {{ page_obj.paginator.count }}
+    <h2>{% trans "Comments" %}</h2>
+    {% trans "Total" %}: {{ page_obj.paginator.count }}
     <hr>
     {% if comment %}
         {% for comment in comment %}
@@ -21,7 +22,7 @@
             </style>
             <p>{{ comment.comment_time_in|date:'d.M.Y'}}</p>
             <a class="mylink" href="{{ comment.get_absolute_url }}">
-                <p>Коментарий : "{{ comment.comment_text|censor }}" - {{ comment.comment_user.username }}</p>
+                <p>{% trans "Comment" %}: "{{ comment.comment_text|censor }}" - {{ comment.comment_user.username }}</p>
             </a>
             {% if comment.comment_post.post_title|length > 60 %}
                 <a class="mylink" href="/news/{{ comment.comment_post.id }}">
@@ -36,7 +37,7 @@
             <hr>
         {% endfor %}
     {% else %}
-        <h2>Коментариев нет!</h2>
+        <h2>{% trans "No comments" %}!</h2>
     {% endif %}
     {% if page_obj.has_previous %}
         <a class="btn btn-secondary btn-sm" href="?page=1">1</a>

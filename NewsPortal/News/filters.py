@@ -1,4 +1,5 @@
 from django_filters import FilterSet, ModelMultipleChoiceFilter, ModelChoiceFilter, CharFilter, DateTimeFilter
+from django.utils.translation import gettext
 from .models import *
 from django.forms import DateTimeInput
 
@@ -13,7 +14,7 @@ class PostFilter(FilterSet):
     post_title = CharFilter(
         field_name='post_title',
         lookup_expr='icontains',
-        label='Поиск по названию',
+        label=gettext('Search for title'),
     )
 
     # post_text = CharFilter(
@@ -24,7 +25,7 @@ class PostFilter(FilterSet):
     post_category = ModelMultipleChoiceFilter(
         field_name='post_category',
         queryset=Category.objects.all(),
-        label='Поиск по категории',
+        label=gettext('Search for category'),
         conjoined=True,
     )
 

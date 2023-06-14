@@ -1,18 +1,19 @@
 {% extends 'flatpages/default.html' %}
 
 {% load custom_tags %}
+{% load i18n %}
 
 {% block title %}
-    Создание новости
+    {% trans "Create post" %}
 {% endblock title %}
 {% block content %}
-    <h6>{% current_time %}</h6>
+    <h6>{{ time_now }}</h6>
     <hr>
-    <h2>Создание новости</h2>
+    <h2>{% trans "Create post" %}</h2>
     <hr>
     <form action ="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-    <input type="submit" class="btn btn-success" value="Сохранить"></form>
+    <input type="submit" class="btn btn-success" value="{% trans 'Save' %}"></form>
 {% endblock content %}
 

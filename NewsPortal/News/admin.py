@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from modeltranslation.admin import TranslationAdmin
 # from django.contrib.flatpages.admin import FlatPageAdmin
 # from django.contrib.flatpages.models import FlatPage
 # from django.utils.translation import gettext_lazy as _
@@ -39,8 +40,16 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('comment_user',)  # тут всё очень похоже на фильтры из запросов в базу
 
 
+class CategoryAdmin(TranslationAdmin):
+    model = Category
+
+
+class PostTransAdmin(TranslationAdmin):
+    model = Post
+
+
 admin.site.register(Post, PostAdmin)
-admin.site.register(Comment, CommentAdmin)
+admin.site.register(Comment)
 admin.site.register(Author)
 admin.site.register(Category)
 

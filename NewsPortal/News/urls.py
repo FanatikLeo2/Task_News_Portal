@@ -1,10 +1,12 @@
 from django.urls import path
 from .views import *
+from django.urls import path, include
 from django.views.decorators.http import require_POST
 from django.views.decorators.cache import cache_page
 
 
 urlpatterns = [
+   path('i18n/', include('django.conf.urls.i18n')), # подключаем встроенные эндопинты для работы с локализацией
    path('', PostList.as_view(), name='post_list'),
    path('search/', PostListSearch.as_view(), name='post_search'),
    path('create/', PostCreate.as_view(), name='create_post'),

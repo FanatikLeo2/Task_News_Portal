@@ -2,18 +2,19 @@
 
 {% load custom_filters %}
 {% load custom_tags %}
+{% load i18n %}
 
 {% block title %}
-    Поиск
+    {% trans "Search" %}
 {% endblock title %}
 {% block content %}
-    <h6>{% current_time %}</h6>
+    <h6>{{ time_now }}</h6>
     <hr>
-    <h2>Поиск по новостям ( {{ page_obj.paginator.count }} )</h2>
+    <h2>{% trans "Search for news" %} ( {{ page_obj.paginator.count }} )</h2>
     <form action="" method="get" style="text-align: center;">
         <hr>
         {{ filterset.form.as_p }}
-        <input type="submit" class="btn btn-secondary" value="Найти" />
+        <input type="submit" class="btn btn-secondary" value="{% trans 'Search' %}" />
     </form>
     <hr>
     {% if post %}
@@ -33,7 +34,7 @@
             <hr>
         {% endfor %}
     {% else %}
-       <h2>Новостей нет!</h2>
+       <h2>{% trans "There is no news!" %}</h2>
     {% endif %}
     {% if page_obj.has_previous %}
        <a class="btn btn-secondary btn-sm" href="?{% url_replace page=1 %}">1</a>

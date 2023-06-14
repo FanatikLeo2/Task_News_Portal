@@ -1,6 +1,7 @@
 {% extends 'flatpages/default.html' %}
 
 {% load custom_filters %}
+{% load i18n %}
 
 {% block title %}
     {{ com.comment_text|truncatechars:20|censor }}
@@ -13,5 +14,5 @@
     <hr>
     <h6>{{ com.comment_user }}</h6>
     <hr>
-    <a class="btn btn-secondary btn-sm" href="/news/{{ com.comment_post.id }}">Назад</a>
+    <a class="btn btn-secondary btn-sm" href="/news/{{ com.comment_post.id }}">{% trans "Back" %}</a>
 {% endblock content %}

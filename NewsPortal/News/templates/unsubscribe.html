@@ -1,7 +1,9 @@
 {% extends 'flatpages/default.html' %}
 
+{% load i18n %}
+
 {% block content %}
     <h6> {{ message }} {{ category }}</h6>
     <hr>
-    <a class="btn btn-danger" href="{% url 'post_list' %}">Понятно</a>
+    <a class="btn btn-danger" href="{% url 'post_list' %}">{% trans "Ok" %}</a>
 {% endblock content %}

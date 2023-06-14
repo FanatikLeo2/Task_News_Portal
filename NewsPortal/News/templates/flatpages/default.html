@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -9,8 +12,11 @@
             {% endblock title %}</title>
         <!-- Favicon-->
         <!-- Core theme CSS (includes Bootstrap)-->
-        {% load static %}
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        {% if time_now|time:'H' >= '19' or time_now|time:'H' <= '07' %}
+            <link href="{% static 'css/styles2.css' %}" rel="stylesheet" />
+        {% else %}
+            <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        {% endif %}
     </head>
     <body>
         <!-- Navigation-->
@@ -29,22 +35,30 @@
         <br>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="https://fuchs-ural.ru/">Sponsores</a>
+                <a class="navbar-brand" href="https://fuchs-ural.ru/">{% trans "Sponsores" %}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="/news/">News</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="/news/">{% trans "News" %}</a></li>
                         {% if request.user.is_superuser %}
-                        <li class="nav-item"><a class="nav-link" href="/news/comments/">Comments</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/admin/">Administration</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/news/index/">Index</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/news/comments/">{% trans "Comments" %}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin/">{% trans "Administration" %}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/news/index/">{% trans "Index" %}</a></li>
                         {% endif %}
                         {% if request.user.is_authenticated %}
 <!--                        <li class="nav-item"><a class="nav-link" href="/news/subscriptions/">Subscriptions </a></li>-->
-                        <li class="nav-item"><a class="nav-link" href="/accounts/logout">Logout </a></li>
+                        <li class="nav-item"><a class="nav-link" href="/accounts/logout">{% trans "Logout" %} </a></li>
                         {% else %}
-                        <li class="nav-item"><a class="nav-link" href="/accounts/login">Login </a></li>
+                        <li class="nav-item"><a class="nav-link" href="/accounts/login">{% trans "Login" %} </a></li>
                         {% endif %}
+                        <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == 'ru' %}
+                                <input type="submit" class="btn btn-secondary" name="language" value="EN-US">
+                            {% elif LANGUAGE_CODE == 'en-us' %}
+                                <input type="submit" class="btn btn-secondary" name="language" value="RU">
+                            {% endif %}
+                        </form>
                     </ul>
                 </div>
             </div>

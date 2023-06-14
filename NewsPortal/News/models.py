@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.shortcuts import reverse
@@ -20,10 +21,9 @@ class Author(models.Model):
         self.author_rating = summ_rating
         self.save()
 
-
     class Meta:
-        verbose_name = 'Автор'
-        verbose_name_plural = 'Авторы'
+        verbose_name = gettext('Author')
+        verbose_name_plural = gettext('Authors')
 
 
 class Category(models.Model):
@@ -34,25 +34,25 @@ class Category(models.Model):
         return f'{self.category_name}'
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = gettext('Category')
+        verbose_name_plural = gettext('Categories')
 
 
 class Post(models.Model):
     NEWS = 'NE'
     ARTICLE = 'AR'
     POSTTYPES = [
-        (NEWS, 'Новость'),
-        (ARTICLE, 'Статья'),
+        (NEWS, gettext('News')),
+        (ARTICLE, gettext('Post')),
     ]
 
-    post_author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор')
-    post_type = models.CharField(max_length=2, choices=POSTTYPES, default=NEWS, verbose_name='Тип поста')
-    post_time_in = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
-    post_category = models.ManyToManyField(Category, through='PostCategory', verbose_name='Категория поста')
-    post_title = models.CharField(max_length=255, verbose_name='Заголовок')
-    post_text = models.TextField(verbose_name='Текст')
-    post_rating = models.FloatField(default=0, verbose_name='Рейтинг')
+    post_author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name=gettext('Author'))
+    post_type = models.CharField(max_length=2, choices=POSTTYPES, default=NEWS, verbose_name=gettext('Post type'))
+    post_time_in = models.DateTimeField(auto_now_add=True, verbose_name=gettext('Date of publication'))
+    post_category = models.ManyToManyField(Category, through='PostCategory', verbose_name=gettext('Post category'))
+    post_title = models.CharField(max_length=255, verbose_name=gettext('Title'))
+    post_text = models.TextField(verbose_name=gettext('Text'))
+    post_rating = models.FloatField(default=0, verbose_name=gettext('Rating'))
 
     @property
     def in_rating(self):
@@ -81,8 +81,8 @@ class Post(models.Model):
     #     cache.delete(f'post-{self.pk}')
 
     class Meta:
-        verbose_name = 'Пост'
-        verbose_name_plural = 'Посты'
+        verbose_name = gettext('Post')
+        verbose_name_plural = gettext('Posts')
         ordering = ['-post_time_in']
 
 
@@ -92,11 +92,11 @@ class PostCategory(models.Model):
 
 
 class Comment(models.Model):
-    comment_post = models.ForeignKey(Post, on_delete=models.CASCADE,verbose_name='Пост коментария')
-    comment_user = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name='Автор коментария')
-    comment_text = models.TextField(verbose_name='Текст коментария')
+    comment_post = models.ForeignKey(Post, on_delete=models.CASCADE,verbose_name=gettext('Comments post'))
+    comment_user = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name=gettext('Comments author'))
+    comment_text = models.TextField(verbose_name=gettext('Comments text'))
     comment_time_in = models.DateTimeField(auto_now_add=True)
-    comment_rating = models.FloatField(default=0, verbose_name='Ретинг')
+    comment_rating = models.FloatField(default=0, verbose_name=gettext('Rating'))
 
     def like(self):
         self.comment_rating += 1
@@ -113,8 +113,8 @@ class Comment(models.Model):
         return reverse('show_comment', kwargs={'comment_text': self.comment_text})
 
     class Meta:
-        verbose_name = 'Коментарий'
-        verbose_name_plural = 'Коментарии'
+        verbose_name = gettext('Comment')
+        verbose_name_plural = gettext('Comments')
         ordering = ['comment_time_in']
 
 
